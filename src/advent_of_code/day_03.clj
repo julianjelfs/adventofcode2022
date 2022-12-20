@@ -12,10 +12,8 @@
 
 (defn find_common [line]
   (let [i (/ (count line) 2)
-        parts (map set (split-at i line)) 
-        left (first parts)
-        right (second parts) ] 
-        (first (set/intersection left right))))
+        parts (map set (split-at i line)) ] 
+        (first (reduce set/intersection parts))))
 
 (defn find_badge [group]
     (first (reduce set/intersection (map set group)))
