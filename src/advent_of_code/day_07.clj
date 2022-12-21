@@ -20,8 +20,6 @@
 
 (def sizes (atom ()))
 
-; ok - we are getting the right size for the root directory 
-; we just need to aggregate the size for each path as we go along now
 (defn dir_size [tree]
   (let [node_size (fn [[k v]]
     (if (int? v)
