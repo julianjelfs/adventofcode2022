@@ -40,4 +40,7 @@
 (defn part-2
   "Day 07 Part 2"
   [input]
-  input)
+   (let [used (dir_size (parse_tree (str/split-lines input)))
+         unused (- 70000000 used)
+         shorfall (- 30000000 unused) ]
+    (sort (filter #(>= % shorfall) (deref sizes)))))
