@@ -18,20 +18,26 @@
 (defn parse_tree [input]
   (process_command [] {} input))
 
+(def sizes (atom ()))
+
 ; ok - we are getting the right size for the root directory 
 ; we just need to aggregate the size for each path as we go along now
 (defn dir_size [tree]
-  (let [node_size (fn n [[k v]]
+  (let [node_size (fn [[k v]]
     (if (int? v)
       v
       (dir_size v)
-    ))]
-    (reduce + 0 (map node_size tree))))
+    ))
+    size (reduce + 0 (map node_size tree)) ]
+    (swap! sizes conj size)
+    size))
+
 
 (defn part-1
   "Day 07 Part 1"
   [input]
-   (dir_size (parse_tree (str/split-lines input))))
+   (dir_size (parse_tree (str/split-lines input)))
+   (reduce + (filter #(<= % 100000) (deref sizes))))
 
 (defn part-2
   "Day 07 Part 2"

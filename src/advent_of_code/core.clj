@@ -47,7 +47,7 @@
     "d05.p2" (println (advent-of-code.day-05/part-2 (read-input "day-05.txt")))
     "d06.p1" (println (advent-of-code.day-06/part-1 (read-input "day-06.txt")))
     "d06.p2" (println (advent-of-code.day-06/part-2 (read-input "day-06.txt")))
-    "d07.p1" (println (advent-of-code.day-07/part-1 (read-input "day-07-example.txt")))
+    "d07.p1" (println (advent-of-code.day-07/part-1 (read-input "day-07.txt")))
     "d07.p2" (println (advent-of-code.day-07/part-2 (read-input "day-07.txt")))
     "d08.p1" (println (advent-of-code.day-08/part-1 (read-input "day-08.txt")))
     "d08.p2" (println (advent-of-code.day-08/part-2 (read-input "day-08.txt")))
