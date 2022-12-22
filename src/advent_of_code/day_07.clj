@@ -30,15 +30,12 @@
     (swap! sizes conj size)
     size))
 
-
 (defn part-1
-  "Day 07 Part 1"
   [input]
    (dir_size (parse_tree (str/split-lines input)))
    (reduce + (filter #(<= % 100000) (deref sizes))))
 
 (defn part-2
-  "Day 07 Part 2"
   [input]
    (let [used (dir_size (parse_tree (str/split-lines input)))
          unused (- 70000000 used)
