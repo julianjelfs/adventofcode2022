@@ -36,9 +36,8 @@
    (east grid x y)
    (west grid x y)])
 
-(defn tree_visible? [grid x y]
-  (let [[n s e w] (views_from grid x y)
-        h (tree_height grid x y)]
+(defn tree_visible? [[n s e w] grid x y]
+  (let [h (tree_height grid x y)]
     (or (all_smaller n h) (all_smaller s h) (all_smaller e h) (all_smaller w h))))
 
 (defn find-index [pred lst]
@@ -52,9 +51,8 @@
               idx (inc idx)
               :else (count xs)))))
 
-(defn scenic_score [grid x y]
-  (let [[n s e w] (views_from grid x y)
-        h (tree_height grid x y)]
+(defn scenic_score [[n s e w] grid x y]
+  (let [h (tree_height grid x y)]
     (*
      (viewing_distance (reverse n) h)
      (viewing_distance s h)
@@ -65,9 +63,10 @@
   (let [[x y] (dimensions grid)]
     (for [x' (range 0 x)
           y' (range 0 y)
-          :let [h (tree_height grid x' y')
-                v (tree_visible? grid x' y')
-                s (scenic_score grid x' y')
+          :let [views (views_from grid x' y')
+                h (tree_height grid x' y')
+                v (tree_visible? views grid x' y')
+                s (scenic_score views grid x' y')
                 c [x' y']]]
       [v c h s])))
 
